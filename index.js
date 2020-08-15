@@ -6,6 +6,7 @@
 // Dependencies
 var http = require("http");
 var url = require("url");
+var StringDecoder = require("string_decoder").StringDecoder;
 
 // The server should respond to all requests with a string
 var server = http.createServer(function (req, res) {
@@ -25,19 +26,28 @@ var server = http.createServer(function (req, res) {
   //   Get the headers as an object --> use postman
   var headers = req.headers;
 
-  // Send the response
-  res.end("Hello world\n");
+  //   Get the payload, if any --> send post request with raw text
+  var decoder = new StringDecoder("utf-8");
+  var buffer = "";
+  req.on("data", function (data) {
+    buffer += decoder.write(data);
+  });
+  req.on("end", function () {
+    buffer += decoder.end();
+    // Send the response
+    res.end("Hello world\n");
 
-  // Log the request path
-  console.log(
-    "Request recieved on path: " +
-      trimmedPath +
-      " with method: " +
-      method +
-      " and with these query string parameters ",
-    queryStringObject
-  );
-  console.log("Request received with these headers", headers);
+    // Log the request path
+    console.log(
+      "Request recieved on path: " +
+        trimmedPath +
+        " with method: " +
+        method +
+        " and with these query string parameters ",
+      queryStringObject
+    );
+    console.log("Request received with these payloads", buffer);
+  });
 });
 
 // Start the server, and have it listen on port 3000
