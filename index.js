@@ -22,6 +22,9 @@ var server = http.createServer(function (req, res) {
   // Get the HTTP method
   var method = req.method.toLowerCase();
 
+  //   Get the headers as an object --> use postman
+  var headers = req.headers;
+
   // Send the response
   res.end("Hello world\n");
 
@@ -34,6 +37,7 @@ var server = http.createServer(function (req, res) {
       " and with these query string parameters ",
     queryStringObject
   );
+  console.log("Request received with these headers", headers);
 });
 
 // Start the server, and have it listen on port 3000
