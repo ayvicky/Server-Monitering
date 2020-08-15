@@ -1,0 +1,11 @@
+generate key
+openssl genrsa -des3 -out app.key 2048
+
+generate csr
+openssl req -new -key app.key -out app.csr
+
+generate crt
+openssl -req -days 365 -in app.csr -signkey app.key -out app.crt
+
+now generate for web
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
