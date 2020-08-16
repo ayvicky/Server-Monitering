@@ -75,7 +75,6 @@ var unifiedServer = function (req, res) {
   });
   req.on("end", function () {
     buffer += decoder.end();
-
     // Choose the handler this request should go to, if one is not found use the notFound handler
     var chosenHandler =
       typeof router[trimmedPath] !== "undefined"
@@ -117,4 +116,5 @@ var router = {
   ping: handlers.ping,
   users: handlers.users,
   tokens: handlers.tokens,
+  checks: handlers.checks,
 };
