@@ -5,7 +5,7 @@
 
 //  Dependencies
 var server = require("./lib/server");
-// var workers = require("./lib/workers");
+var workers = require("./lib/workers");
 
 // Declare the app
 var app = {};
@@ -16,7 +16,7 @@ app.init = function () {
   server.init();
 
   // Start the workers
-  //   workers.init();
+  workers.init();
 };
 
 // Execute
