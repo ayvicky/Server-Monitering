@@ -22,15 +22,17 @@
       <!-- Header -->
       <div class="header">
           <!-- Logo -->
-          <a class="logo" href="/"></a>
+          <a class="logo" href="/">
+            <img src="public/logo.png" alt="Logo"/>
+          </a>
           <!-- Navigation goes here -->
           <ul class="menu">
               <li><a href="/">Home</a></li>
-              <li><a href="/" class="LoggedOut">Signup</a></li>
-              <li><a href="/" class="LoggedOut">Login</a></li>
-              <li><a href="/" class="LoggedIn">Dashboard</a></li>
-              <li><a href="/" class="LoggedIn">Account Settings</a></li>
-              <li><a href="/" class="LoggedIn">Logout</a></li>
+              <li><a href="/account/create" class="LoggedOut">Signup</a></li>
+              <li><a href="/session/create" class="LoggedOut">Login</a></li>
+              <li><a href="/checks/all" class="LoggedIn">Dashboard</a></li>
+              <li><a href="/account/edit" class="LoggedIn">Account Settings</a></li>
+              <li><a href="#" class="LoggedIn">Logout</a></li>
           </ul>
       </div>
       <!-- Page-Specific Content -->
