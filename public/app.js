@@ -19,7 +19,7 @@ app.client.request = function(headers, path, method, queryStringObject, payload,
     // Set defaults
     headers = typeof(headers) == 'object' && headers !== null ? headers : {};
     path = typeof(path) == 'string' ? path : '/';
-    method = typeof(method) == 'string' && ['POST', 'GET', 'PUT', 'DELETE'].indexOf(method) > -1 ? method.toUpperCase() : 'GET';
+    method = typeof(method) == 'string' && ['POST', 'GET', 'PUT', 'DELETE'].indexOf(method.toUpperCase()) > -1 ? method.toUpperCase() : 'GET';
     queryStringObject = typeof(queryStringObject) == 'object' && queryStringObject !== null ? queryStringObject : {};
     payload = typeof(payload) == 'object' && payload !== null ? payload : {};
     callback = typeof(callback) == 'function' ? callback : false;
@@ -97,7 +97,7 @@ app.bindForms = function() {
         var elements = this.elements;
         for(var i = 0; i < elements.length; i++) {
             if(elements[i].type !== 'submit'){
-                var valueOfElement = elements[i].type == 'checkbox' ? elements[i].checked : false;
+                var valueOfElement = elements[i].type == 'checkbox' ? elements[i].checked : elements[i].value;
                 payload[elements[i].name] = valueOfElement;
             }
         }
@@ -131,7 +131,7 @@ app.formResponseProcessor = function(formId, requestPayload, responsePayload) {
         // @TODO: Do something here now that the account has been created successfully
 
     }
-}
+};
 
 // Init (bootstrapping)
 app.init = function() {
